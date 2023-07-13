@@ -44,11 +44,44 @@ def problem2 (n):
         
     return results
     
-        
-    
+#Problem 3:
+#Find the largest prime factor of a number
+def problem3(n):
+    results = [1]
+    Prime = [2]
+    while True:
+        start = 0
+        #The program checks if the number has finished being divided:
+        if n == 1:
+            break
+        else: 
+            found = False
+            for i in range(start, len(Prime)):
+                if n % Prime[i] == 0:
+                    found = True
+                    print(Prime[i])
+                    results.append(Prime[i])
+                    n = n/Prime[i]
+            #If we went through all the found primes and nothing showed up, add new prime
+            if not found:
+                start = len(Prime)-1
+                adder = Prime[start]
+                while True:
+                    adder += 1
+                    for i in range(1, adder):
+                        if adder%i==0:
+                            next
+                    break
+                Prime.append(adder)
+    return sorted(results, reverse=True)[0]
+
+            
+
 def main ():
     #print("Problem 1: Sum of multiples of 3 or 5 below 1000 is", problem1(1000))
-    print("Problem 2: Sum of even valued fibonacci number under 4 000 000", problem2(4000000))
+    #print("Problem 2: Sum of even valued fibonacci number under 4 000 000", problem2(4000000))
+    print ("Problem 3: Highest prime factor of a number:", problem3(600851475143))
+
     
 
 
