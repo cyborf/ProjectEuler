@@ -5,6 +5,7 @@
 #Modules:
 import threading
 import itertools
+import math
 
 #Helper functions:
 
@@ -22,6 +23,7 @@ def fib(n):
         return n
     else:
         return fib(n-1) + fib(n-2)
+
 
 #Problem 1: Sum of all multiples of 3 or 5 below 1000:
 #Does that mean we are not counting multiples of 3 AND 5?
@@ -118,7 +120,34 @@ def problem6(n):
         sum += subset[0]*subset[1]
     return 2*sum
 
+#Find the n-th prime number:
+def problem7(n):
+    if n ==1:
+        return 2
+    elif n == 2:
+        return 3
+    
+    lst = [2, 3]
+    i = 3
+    while True:
+        i = i+1
+        if i % 2 == 0 or i % 3 ==0:
+            continue
+        else:
+            Prime=True
+            for x in range (2, int(math.sqrt(i)//1)+1):
+                if i % x == 0:
+                    Prime=False
+                    break
+            if Prime:
+                lst.append(i)
+                if len(lst) == n:
+                    return(lst[-1])
+            else:
+                continue
 
+def problem8(n):
+    pass
 
 
             
@@ -130,7 +159,8 @@ def main ():
     #print ("Problem 3: Highest prime factor of a number:", problem3(600851475143))
     #print ("Problem 4: Highest palindrom that's a product of two n-digit numbers:", problem4(3))
     #print ("Problem 5: Smallest positive number that is evenly divisible by all the numbers from 1 to n:", problem5(20))
-    print("Problem 6: The difference between the square of sums and the sum of squares from 1-n is:", problem6(100))
+    #print("Problem 6: The difference between the square of sums and the sum of squares from 1-n is:", problem6(100))
+    #print ("Problem 7: The n-th prime number", problem7(10001))
     pass
 
     
