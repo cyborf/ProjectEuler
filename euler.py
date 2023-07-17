@@ -75,12 +75,50 @@ def problem3(n):
                 Prime.append(adder)
     return sorted(results, reverse=True)[0]
 
+#Find the largest palindrome made from the product of two n digit numbers
+def problem4(n):
+    final = 10**(n*2-1)+1
+    for i in range (int("9"*n), int("1"+"0"*(n-1)), -1):
+        for j in range (int("9"*n), int("1"+"0"*(n-1)), -1):
+            if final < i*j:
+                s = str(i*j)
+                if s==s[::-1]:
+                    final = i*j
+    return final
+
+def problem5(n):
+    #find the LCM of all the number in the list
+    lst = range(1, n+1)
+    #I could have used a math.lcm() here butttttttt that sounds like cheating :O
+    # Python Program to find the L.C.M. of two input number
+    def lcm(x, y):
+        if x > y:
+            greater = x
+        else:
+            greater = y
+        while(True):
+            if((greater % x == 0) and (greater % y == 0)):
+                final = greater
+                break
+            greater += 1
+        return final
+    final = 1
+    for i in range(1, len(lst)):
+        final = lcm(final, i+1)
+    return final
+        
+
+
+            
             
 
 def main ():
     #print("Problem 1: Sum of multiples of 3 or 5 below 1000 is", problem1(1000))
     #print("Problem 2: Sum of even valued fibonacci number under 4 000 000", problem2(4000000))
-    print ("Problem 3: Highest prime factor of a number:", problem3(600851475143))
+    #print ("Problem 3: Highest prime factor of a number:", problem3(600851475143))
+    #print ("Problem 4: Highest palindrom that's a product of two n-digit numbers:", problem4(3))
+    print ("Problem 5: Smallest positive number that is evenly divisible by all the numbers from 1 to n:", problem5(20))
+    pass
 
     
 
