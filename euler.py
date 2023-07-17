@@ -4,6 +4,7 @@
 
 #Modules:
 import threading
+import itertools
 
 #Helper functions:
 
@@ -86,11 +87,13 @@ def problem4(n):
                     final = i*j
     return final
 
+#Find a number that is evenly divisible by all the numbers from 1 to n:
 def problem5(n):
     #find the LCM of all the number in the list
     lst = range(1, n+1)
     #I could have used a math.lcm() here butttttttt that sounds like cheating :O
     # Python Program to find the L.C.M. of two input number
+    #this takes way too long
     def lcm(x, y):
         if x > y:
             greater = x
@@ -106,7 +109,16 @@ def problem5(n):
     for i in range(1, len(lst)):
         final = lcm(final, i+1)
     return final
-        
+
+#Find the difference between the sum of squares and the square of sums of the first n natural numbers:
+def problem6(n):
+    #After doing some math the dif = 2 * (the product of the two elements of all two-element subset of the list from 1 to n)
+    sum = 0
+    for subset in itertools.combinations(range(1, n+1), 2):
+        sum += subset[0]*subset[1]
+    return 2*sum
+
+
 
 
             
@@ -117,7 +129,8 @@ def main ():
     #print("Problem 2: Sum of even valued fibonacci number under 4 000 000", problem2(4000000))
     #print ("Problem 3: Highest prime factor of a number:", problem3(600851475143))
     #print ("Problem 4: Highest palindrom that's a product of two n-digit numbers:", problem4(3))
-    print ("Problem 5: Smallest positive number that is evenly divisible by all the numbers from 1 to n:", problem5(20))
+    #print ("Problem 5: Smallest positive number that is evenly divisible by all the numbers from 1 to n:", problem5(20))
+    print("Problem 6: The difference between the square of sums and the sum of squares from 1-n is:", problem6(100))
     pass
 
     
